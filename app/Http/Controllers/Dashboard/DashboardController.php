@@ -26,9 +26,31 @@ class DashboardController extends Controller
      */
     public function index()
     {
+        
+//        Posts::update([
+//            'title' => 'test2',
+//            'content' => 'content test2'
+//        ]);
+        
         $posts = Posts::all();
         return view('dashboard.index', [
-            'posts' => $posts
+            'posts' => $posts,
+            'item' => $post
         ]);
+    }
+    
+    
+    public function create()
+    {
+        
+        return view('dashboard.posts.create');
+    }
+    
+    public function insert(Request $request)
+    {
+        
+        $data = $request->all();
+        return "create POST";
+        
     }
 }

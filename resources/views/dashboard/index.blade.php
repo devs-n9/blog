@@ -12,5 +12,7 @@
         <li>{{ $post->title }}</li>
         @endforeach
     </ul>
+    
+    <p>{{ $item->content }}</p>
 </body>
 </html>

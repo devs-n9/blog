@@ -18,3 +18,6 @@ Route::get('/products/{name}', "ProductsController@index");
 Route::auth();
 
 Route::get('/dashboard', 'Dashboard\DashboardController@index');
+Route::get('/dashboard/post/create', 'Dashboard\DashboardController@create');
+
+Route::post('/dashboard/post/create', 'Dashboard\DashboardController@insert');

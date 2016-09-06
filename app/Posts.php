@@ -8,4 +8,5 @@ class Posts extends Model
 {
     protected $table = 'posts';
     protected $guarded = [''];
+    public $timestamps = false;
 }
