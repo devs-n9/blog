@@ -26,6 +26,7 @@ class DashboardController extends Controller
      */
     public function index()
     {
+        
         $posts = Posts::all();
         return view('dashboard.index', [
             'posts' => $posts

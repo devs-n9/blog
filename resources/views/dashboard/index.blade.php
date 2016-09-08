@@ -11,6 +11,7 @@
     <ul>
         @foreach($posts as $post)
         <li>{{ $post->title }} 
+            {{ var_dump($post->categories) }}
             <a href="/dashboard/post/edit/{{ $post->id }}"> edit</a>
             <a href="/dashboard/post/delete/{{ $post->title }}"> delete</a>
         </li>
