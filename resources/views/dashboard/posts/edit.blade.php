@@ -5,26 +5,18 @@
     <title>Document</title>
 </head>
 <body>
-    <h3>Create new Post</h3>
+    <h3>Edit Post</h3>
     <form method="post">
        {{ csrf_field() }}
         <label for="">Title</label>
         <br>
-        <input type="text" name="title">
+        <input type="text" name="title" value="{{ $post->title }}">
         <br>
         <label for="">Content</label>
         <br>
-        <textarea name="content" cols="30" rows="10"></textarea>
-        @if(!empty($errors))
-        
-        @foreach($errors as $error)
-            <p>{{ $error }}</p>
-        @endforeach
-        
-        @endif
+        <textarea name="content" cols="30" rows="10">{{ $post->content }}</textarea>
         <br>
         <input type="submit" value="Save">
-        
     </form>
 </body>
 </html>

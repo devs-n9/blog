@@ -18,6 +18,11 @@ Route::get('/products/{name}', "ProductsController@index");
 Route::auth();
 
 Route::get('/dashboard', 'Dashboard\DashboardController@index');
-Route::get('/dashboard/post/create', 'Dashboard\DashboardController@create');
 
+Route::get('/dashboard/post/create', 'Dashboard\DashboardController@create');
 Route::post('/dashboard/post/create', 'Dashboard\DashboardController@insert');
+
+Route::get('/dashboard/post/edit/{id}', 'Dashboard\DashboardController@edit');
+Route::post('/dashboard/post/edit/{id}', 'Dashboard\DashboardController@update');
+
+Route::get('/dashboard/post/delete/{title}', 'Dashboard\DashboardController@delete');
