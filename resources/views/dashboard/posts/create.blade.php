@@ -1,16 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Document</title>
-</head>
-<body>
+@extends('templates.dashboard')
+
+@section('content')
     <h3>Create new Post</h3>
     <form method="post">
        {{ csrf_field() }}
         <label for="">Title</label>
         <br>
         <input type="text" name="title">
+        <br>
+        <br>
+        @foreach($categories as $category)
+            <input type="checkbox" name="categories[]" value="{{ $category->id }}" > : {{ $category->category }} <br>
+        @endforeach
         <br>
         <label for="">Content</label>
         <br>
@@ -26,5 +27,4 @@
         <input type="submit" value="Save">
         
     </form>
-</body>
-</html>
+@endsection

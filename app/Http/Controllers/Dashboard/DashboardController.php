@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Dashboard;
 use Validator;
 use App\Posts;
+use App\Categories;
+use App\Postcategories;
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
 use Illuminate\Http\Request;
@@ -36,19 +38,37 @@ class DashboardController extends Controller
     
     public function create()
     {
-        return view('dashboard.posts.create');
+        $categories = Categories::all();
+        return view('dashboard.posts.create', [
+            'categories' => $categories
+        ]);
     }
     
     public function insert(Request $request)
     {
+        $categories = [];
+        $category = [];
         $validator = Validator::make($request->all(), [
             'title' => 'unique:posts|required'
         ]);
         
+        
+        
         if (!$validator->fails()) {
             $data = $request->all();
-            Posts::create($data);
-
+            
+            $categories = $data['categories'];
+            
+            unset($data['categories']);
+            
+            $post = Posts::create($data);
+            
+            foreach($categories as $k => $cat){
+                $category[$k]['category_id'] = $cat;
+                $category[$k]['post_id'] = $post->id;
+            }
+            
+            Postcategories::insert($category);
             return redirect('/dashboard');
         }else{
             
@@ -62,8 +82,10 @@ class DashboardController extends Controller
     public function edit($id)
     {
         $post = Posts::find($id);
+        $categories = Categories::all();
         return view('dashboard.posts.edit', [
-            'post' => $post
+            'post' => $post,
+            'categories' => $categories
         ]);
     }
     
